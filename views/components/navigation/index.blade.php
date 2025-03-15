@@ -1,30 +1,28 @@
-<nav class="w-full md:px-4 bg-background-secondary border-b border-neutral md:h-14 flex md:flex-row flex-col justify-between fixed top-0 z-20">
+<nav class="w-full md:px-4 bg-background-secondary/95 backdrop-blur-sm border-b border-neutral/50 md:h-16 flex md:flex-row flex-col justify-between fixed top-0 z-20">
     <div x-data="{ 
         slideOverOpen: false 
     }"
         x-init="$watch('slideOverOpen', value => { document.documentElement.style.overflow = value ? 'hidden' : '' })"
         class="relative z-50 w-full h-auto">
 
-        <div class="flex flex-row items-center justify-between h-14 px-4">
-
-            <div class="flex flex-row">
-                <button @click="slideOverOpen=true" class="flex md:hidden w-10 h-10 items-center justify-center rounded-lg hover:bg-neutral transition">
+        <div class="flex flex-row items-center justify-between h-16 px-4">
+            <div class="flex flex-row items-center gap-6">
+                <button @click="slideOverOpen=true" class="flex md:hidden w-10 h-10 items-center justify-center rounded-lg hover:bg-neutral/30 transition">
                     <x-ri-menu-fill class="size-5" />
                 </button>
-                <a href="{{ route('home') }}" class="flex flex-row items-center" wire:navigate>
-                    <x-logo class="h-10" />
-                    <span class="text-xl text-base ml-2 font-bold">{{ config('app.name') }}</span>
+                <a href="{{ route('home') }}" class="flex flex-row items-center gap-3" wire:navigate>
+                    <x-logo class="h-8" />
+                    <span class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">{{ config('app.name') }}</span>
                 </a>
-                <div class="md:flex hidden flex-row ml-7">
+                <div class="md:flex hidden flex-row items-center gap-2">
                     @foreach (\App\Classes\Navigation::getLinks() as $nav)
                     @if (isset($nav['children']) && count($nav['children']) > 0)
                     <div class="relative">
                         <x-dropdown>
                             <x-slot:trigger>
-                                <div class="flex flex-col">
-                                    <span class="flex flex-row items-center p-3 text-sm font-semibold whitespace-nowrap text-base hover:text-base/80">
-                                        {{ $nav['name'] }}
-                                    </span>
+                                <div class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-neutral/30 transition-colors">
+                                    <span class="text-sm font-medium">{{ $nav['name'] }}</span>
+                                    <x-ri-arrow-down-s-line class="size-4" />
                                 </div>
                             </x-slot:trigger>
                             <x-slot:content>
@@ -42,28 +40,31 @@
                     <x-navigation.link
                         :href="route($nav['route'], $nav['params'] ?? null)"
                         :spa="isset($nav['spa']) ? $nav['spa'] : true"
-                        class="flex items-center p-3">
+                        class="px-3 py-2 rounded-lg hover:bg-neutral/30 transition-colors">
                         {{ $nav['name'] }}
                     </x-navigation.link>
                     @endif
-                    {{-- @if($nav['separator'])
-                    <div class="h-px w-full bg-neutral"></div>
-                    @endif --}}
                     @endforeach
-
                 </div>
             </div>
 
-            <div class="flex flex-row items-center">
+            <div class="flex flex-row items-center gap-3">
+                <a href="https://status.cirrixo.com/" target="_blank" 
+                    class="hidden md:inline-flex items-center gap-2 px-3 py-2 bg-success/10 hover:bg-success/20 text-success rounded-lg transition-colors">
+                    <x-ri-pulse-line class="size-4" />
+                    <span class="text-sm font-medium">Status</span>
+                </a>
+
                 <div class="items-center hidden md:flex">
                     <x-dropdown>
                         <x-slot:trigger>
-                            <div class="flex flex-col">
-                                <span class="text-sm text-base font-semibold text-nowrap">{{ strtoupper(app()->getLocale()) }} <span class="text-base/50 font-semibold">|</span> {{ session('currency', 'USD') }}</span>
+                            <div class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-neutral/30 transition-colors">
+                                <span class="text-sm font-medium">{{ strtoupper(app()->getLocale()) }} | {{ session('currency', 'USD') }}</span>
+                                <x-ri-arrow-down-s-line class="size-4" />
                             </div>
                         </x-slot:trigger>
                         <x-slot:content>
-                            <strong class="block p-2 text-xs font-semibold uppercase text-base/50"> Language </strong>
+                            <strong class="block p-2 text-xs font-semibold uppercase text-base/50">Language</strong>
                             <livewire:components.language-switch />
                             <livewire:components.currency-switch />
                         </x-slot:content>
@@ -77,12 +78,15 @@
                 @if(auth()->check())
                 <x-dropdown>
                     <x-slot:trigger>
-                        <img src="{{ auth()->user()->avatar }}" class="size-8 rounded-full border border-neutral bg-background" alt="avatar" />
+                        <div class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral/30 transition-colors">
+                            <img src="{{ auth()->user()->avatar }}" class="size-8 rounded-full border border-neutral/50 bg-background" alt="avatar" />
+                            <x-ri-arrow-down-s-line class="size-4" />
+                        </div>
                     </x-slot:trigger>
                     <x-slot:content>
-                        <div class="flex flex-col p-2">
-                            <span class="text-sm text-base text-nowrap">{{ auth()->user()->name }}</span>
-                            <span class="text-sm text-base text-nowrap">{{ auth()->user()->email }}</span>
+                        <div class="flex flex-col p-3 border-b border-neutral">
+                            <span class="font-medium">{{ auth()->user()->name }}</span>
+                            <span class="text-sm text-base/70">{{ auth()->user()->email }}</span>
                         </div>
                         @foreach (\App\Classes\Navigation::getAccountDropdownLinks() as $nav)
                         <x-navigation.link :href="route($nav['route'], $nav['params'] ?? null)" :spa="isset($nav['spa']) ? $nav['spa'] : true">
@@ -93,24 +97,25 @@
                     </x-slot:content>
                 </x-dropdown>
                 @else
-                <div class="flex flex-row">
-                    <x-navigation.link :href="route('login')">{{ __('navigation.login') }}</x-navigation.link>
-                    <x-navigation.link :href="route('register')">
-                        <x-button.primary>
-                            {{ __('navigation.register') }}
-                        </x-button.primary>
+                <div class="flex items-center gap-2">
+                    <x-navigation.link :href="route('login')" class="px-3 py-2 rounded-lg hover:bg-neutral/30 transition-colors">
+                        {{ __('navigation.login') }}
                     </x-navigation.link>
-                    </a>
+                    <x-navigation.link :href="route('register')" class="px-3 py-2 bg-primary hover:bg-primary/90 text-white rounded-lg transition-colors">
+                        {{ __('navigation.register') }}
+                    </x-navigation.link>
                 </div>
                 @endif
             </div>
         </div>
+
+        <!-- Mobile Menu -->
         <template x-teleport="body">
             <div
                 x-show="slideOverOpen"
                 @keydown.window.escape="slideOverOpen=false"
                 class="relative z-[99]">
-                <div x-show="slideOverOpen" x-transition.opacity.duration.600ms @click="slideOverOpen = false" class="fixed inset-0 bg-primary/20"></div>
+                <div x-show="slideOverOpen" x-transition.opacity.duration.600ms @click="slideOverOpen = false" class="fixed inset-0 bg-black/20 backdrop-blur-sm"></div>
                 <div class="fixed inset-0 overflow-hidden">
                     <div class="absolute inset-0 overflow-hidden">
                         <div class="fixed inset-y-0 left-0 flex max-w-full pr-44">
@@ -125,26 +130,23 @@
                                 x-transition:leave-end="-translate-x-full"
                                 class="w-screen max-w-full">
                                 <div class="flex flex-col h-full bg-background-secondary border-r border-neutral shadow-lg">
-                                    <div class="px-4 sm:px-5">
-                                        <div class="flex items-center justify-between pb-1">
-                                            <div class="flex flex-row items-center justify-between h-14 px-4">
-                                                <a href="{{ route('home') }}" class="flex flex-row items-center" wire:navigate>
-                                                    <x-logo class="h-10" />
-                                                    <span class="text-xl text-base ml-2 font-bold">{{ config('app.name') }}</span>
-                                                </a>
-                                            </div>
-                                            <div class="flex items-center h-auto ml-3">
-                                                <button @click="slideOverOpen=false" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-neutral transition">
-                                                    <x-ri-close-fill class="size-5" />
-                                                </button>
-                                            </div>
-                                        </div>
+                                    <div class="flex items-center justify-between h-16 px-4">
+                                        <a href="{{ route('home') }}" class="flex items-center gap-3" wire:navigate>
+                                            <x-logo class="h-8" />
+                                            <span class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">{{ config('app.name') }}</span>
+                                        </a>
+                                        <button @click="slideOverOpen=false" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-neutral/30 transition">
+                                            <x-ri-close-fill class="size-5" />
+                                        </button>
                                     </div>
-                                    <div class="relative flex-1 px-4 mt-5 sm:px-5">
-                                        <div class="absolute inset-0 px-4 sm:px-5">
-                                            <div class="relative h-full overflow-hidden">
-                                                <x-navigation.sidebar-links />
-                                            </div>
+                                    <div class="flex-1 overflow-y-auto px-4 py-6">
+                                        <div class="flex flex-col gap-2">
+                                            <a href="https://status.cirrixo.com/" target="_blank" 
+                                                class="inline-flex items-center gap-2 px-3 py-2 bg-success/10 hover:bg-success/20 text-success rounded-lg transition-colors">
+                                                <x-ri-pulse-line class="size-4" />
+                                                <span class="text-sm font-medium">Status</span>
+                                            </a>
+                                            <x-navigation.sidebar-links />
                                         </div>
                                     </div>
                                 </div>
