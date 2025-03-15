@@ -33,29 +33,35 @@
     }
 @endphp
 
-<div class="flex flex-row items-center pb-4">
+<nav {{ $attributes->merge(['class' => 'flex items-center gap-3 text-sm']) }}>
     @if (!empty($breadcrumbs))
         @foreach ($breadcrumbs as $index => $breadcrumb)
             @if ($index > 0)
-                <x-ri-arrow-right-s-line class="size-4 text-base mx-2" />
+                <div class="flex items-center gap-3">
+                    <x-ri-arrow-right-s-line class="size-4 text-base/50" />
+                </div>
             @endif
 
             @if (count($breadcrumbs) === 1)
-                <span class="text-2xl font-bold">
+                <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
                     {{ $breadcrumb['name'] ?? '' }}
-                </span>
+                </h1>
             @elseif ($index === count($breadcrumbs) - 1)
-                <span class="text-base/80 font-semibold">
+                <span class="font-medium text-base/70">
                     {{ $breadcrumb['name'] ?? '' }}
                 </span>
             @else
-                <a href="{{ isset($breadcrumb['route']) ? route($breadcrumb['route'], $breadcrumb['params'] ?? []) : '#' }}" 
-                   class="text-lg font-bold hover:text-primary">
+                <a 
+                    href="{{ isset($breadcrumb['route']) ? route($breadcrumb['route'], $breadcrumb['params'] ?? []) : '#' }}"
+                    class="font-medium text-primary hover:text-primary/80 transition-colors"
+                >
                     {{ $breadcrumb['name'] ?? '' }}
                 </a>
             @endif
         @endforeach
     @else
-        <span class="text-lg font-bold">{{ __('navigation.home') }}</span>
+        <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+            {{ __('navigation.home') }}
+        </h1>
     @endif
-</div>
+</nav>

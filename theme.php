@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => 'Default',
+    'name' => 'Nebula',
     'author' => 'Cirrixo',
     'url' => 'https://cirrixo.com',
 
@@ -19,101 +19,146 @@ return [
             'type' => 'markdown',
             'default' => 'Welcome to Cirrixo!',
         ],
+        // Light Theme Colors
         [
             'name' => 'primary',
-            'label' => 'Primary - Brand Color (Light)',
+            'label' => 'Primary Brand Color (Light)',
             'type' => 'color',
-            'default' => 'hsl(229, 100%, 64%)',
+            'default' => 'hsl(262, 83%, 58%)', // Rich Purple
         ],
         [
             'name' => 'secondary',
-            'label' => 'Secondary - Brand Color (Light)',
+            'label' => 'Secondary Brand Color (Light)',
             'type' => 'color',
-            'default' => 'hsl(237, 33%, 60%)',
+            'default' => 'hsl(199, 89%, 48%)', // Vibrant Blue
+        ],
+        [
+            'name' => 'accent',
+            'label' => 'Accent Color (Light)',
+            'type' => 'color',
+            'default' => 'hsl(330, 82%, 60%)', // Bright Pink
         ],
         [
             'name' => 'neutral',
-            'label' => 'Borders, Accents... (Light)',
+            'label' => 'Borders, Accents (Light)',
             'type' => 'color',
-            'default' => 'hsl(220, 25%, 85%)',
+            'default' => 'hsl(220, 16%, 92%)',
         ],
         [
             'name' => 'base',
-            'label' => 'Base - Text Color (Light)',
+            'label' => 'Base Text Color (Light)',
             'type' => 'color',
-            'default' => 'hsl(0, 0%, 0%)',
+            'default' => 'hsl(225, 25%, 20%)',
         ],
         [
             'name' => 'muted',
-            'label' => 'Muted - Text Color (Light)',
+            'label' => 'Muted Text Color (Light)',
             'type' => 'color',
-            'default' => 'hsl(220, 28%, 25%)',
+            'default' => 'hsl(225, 15%, 50%)',
         ],
         [
             'name' => 'inverted',
-            'label' => 'Inverted - Text Color (Light)',
+            'label' => 'Inverted Text Color (Light)',
             'type' => 'color',
-            'default' => 'hsl(100, 100%, 100%)',
+            'default' => 'hsl(0, 0%, 100%)',
         ],
         [
             'name' => 'background',
-            'label' => 'Background - Color (Light)',
+            'label' => 'Background Color (Light)',
             'type' => 'color',
-            'default' => 'hsl(100, 100%, 100%)',
+            'default' => 'hsl(220, 25%, 98%)',
         ],
         [
             'name' => 'background-secondary',
-            'label' => 'Background - Secondary Color (Light)',
+            'label' => 'Background Secondary (Light)',
             'type' => 'color',
-            'default' => 'hsl(0, 0%, 97%)',
+            'default' => 'hsl(220, 25%, 95%)',
         ],
+        // Dark Theme Colors
         [
             'name' => 'dark-primary',
-            'label' => 'Primary - Brand Color (Dark)',
+            'label' => 'Primary Brand Color (Dark)',
             'type' => 'color',
-            'default' => 'hsl(229, 100%, 64%)',
+            'default' => 'hsl(262, 83%, 65%)', // Brighter Purple
         ],
         [
             'name' => 'dark-secondary',
-            'label' => 'Secondary - Brand Color (Dark)',
+            'label' => 'Secondary Brand Color (Dark)',
             'type' => 'color',
-            'default' => 'hsl(237, 33%, 60%)',
+            'default' => 'hsl(199, 89%, 55%)', // Brighter Blue
+        ],
+        [
+            'name' => 'dark-accent',
+            'label' => 'Accent Color (Dark)',
+            'type' => 'color',
+            'default' => 'hsl(330, 82%, 65%)', // Brighter Pink
         ],
         [
             'name' => 'dark-neutral',
-            'label' => 'Borders, Accents... (Dark)',
+            'label' => 'Borders, Accents (Dark)',
             'type' => 'color',
-            'default' => 'hsl(220, 25%, 29%)',
+            'default' => 'hsl(225, 20%, 25%)',
         ],
         [
             'name' => 'dark-base',
-            'label' => 'Base - Text Color (Dark)',
+            'label' => 'Base Text Color (Dark)',
             'type' => 'color',
-            'default' => 'hsl(100, 100%, 100%)',
+            'default' => 'hsl(220, 25%, 95%)',
         ],
         [
             'name' => 'dark-muted',
-            'label' => 'Muted - Text Color (Dark)',
+            'label' => 'Muted Text Color (Dark)',
             'type' => 'color',
-            'default' => 'hsl(220, 28%, 25%)',
+            'default' => 'hsl(220, 15%, 65%)',
         ],
         [
             'name' => 'dark-inverted',
-            'label' => 'Inverted - Text Color (Dark)',
+            'label' => 'Inverted Text Color (Dark)',
             'type' => 'color',
-            'default' => 'hsl(220, 14%, 60%)',
+            'default' => 'hsl(225, 25%, 20%)',
         ],
         [
             'name' => 'dark-background',
-            'label' => 'Background - Color (Dark)',
+            'label' => 'Background Color (Dark)',
             'type' => 'color',
-            'default' => 'hsl(221, 39%, 11%)',
+            'default' => 'hsl(225, 30%, 12%)',
         ],
         [
             'name' => 'dark-background-secondary',
-            'label' => 'Background - Secondary Color (Dark)',
+            'label' => 'Background Secondary (Dark)',
             'type' => 'color',
-            'default' => 'hsl(217, 33%, 16%)',
+            'default' => 'hsl(225, 28%, 15%)',
+        ],
+        // Status Colors
+        [
+            'name' => 'success',
+            'label' => 'Success Color',
+            'type' => 'color',
+            'default' => 'hsl(142, 76%, 36%)',
+        ],
+        [
+            'name' => 'error',
+            'label' => 'Error Color',
+            'type' => 'color',
+            'default' => 'hsl(346, 87%, 43%)',
+        ],
+        [
+            'name' => 'warning',
+            'label' => 'Warning Color',
+            'type' => 'color',
+            'default' => 'hsl(32, 95%, 44%)',
+        ],
+        [
+            'name' => 'info',
+            'label' => 'Info Color',
+            'type' => 'color',
+            'default' => 'hsl(199, 89%, 48%)',
+        ],
+        [
+            'name' => 'inactive',
+            'label' => 'Inactive Color',
+            'type' => 'color',
+            'default' => 'hsl(220, 15%, 60%)',
         ],
     ],
 ];

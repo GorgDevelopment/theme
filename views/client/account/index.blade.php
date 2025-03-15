@@ -20,4 +20,4 @@
             {{ __('general.update') }}
         </x-button.primary>
     </div>
-</div>
+</div>  `   

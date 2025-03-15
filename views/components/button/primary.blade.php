@@ -1,15 +1,5 @@
-<button 
-    {{ $attributes->merge(['class' => 'bg-primary text-white font-semibold hover:bg-primary/80 py-2 px-4 rounded-md w-full duration-300 cursor-pointer']) }}>
+@props(['type' => 'button'])
 
-    @if (isset($type) && $type === 'submit')
-        <div role="status" wire:loading>
-            <x-ri-loader-5-fill aria-hidden="true" class="size-6 me-2 fill-background animate-spin" />
-            <span class="sr-only">Loading...</span>
-        </div>
-        <div wire:loading.remove>
-            {{ $slot }}
-        </div>
-    @else
-        {{ $slot }}
-    @endif
+<button type="{{ $type }}" {{ $attributes->merge(['class' => 'inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium bg-primary text-white rounded-xl shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 ease-in-out']) }}>
+    {{ $slot }}
 </button>
